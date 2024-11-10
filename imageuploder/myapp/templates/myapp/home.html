@@ -8,25 +8,36 @@
   </head>
   <body>
     <div class="container">
-        <div>
-            <h1>Image Uploader</h1>
+        <div class="py-5 text-center bg-secondary text-white">
+            <h1 class="mb-3`">Image Uploader</h1>
             <form action="{% url 'home' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form}}
                 <input type="submit" value="Upload" class="btn btn-danger">
             </form>
         </div>
-        <div>
-            <h1>Uploaded Images</h1>
-            <div class="row">
-                {% for image in images %}
-                <div class="col-md-4">
-                    <img src="{{image.image.url}}" class="img-thumbnail">
-                    <p class="btn btn-danger">{{image.description}}</p>
-                </div>
 
-                {% endfor %}
+
+
+
+      
+           
+            <div class="row">
+              <h1 class='mt-3'>Uploaded Images</h1>
+                {% for image in images %}
+                  <div class="col-sm-4">
+                      <div class="card m-2">
+                                  <img src="{{image.image.url}}" class="card-img-top" height="200px">
+                                  <div class="card-footer">
+                                    <h5 class="card-title ml-5" > {{image.title}} </h5>
+                                    <p class="card-description ml-2">{{image.description}}</p>
+                                  </div>
+                      </div>
+                     
+                  </div>
+                  {% endfor %}      
             </div>
+         
 
     </div>
     

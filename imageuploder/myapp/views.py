@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Image
 from .form import Imageform
 
@@ -8,5 +8,8 @@ def home(request):
         form = Imageform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-    form = Imageform()
-    return render(request, 'myapp/home.html', {'form': form, 'images': Image.objects.all()})
+            return redirect('home')
+    else:
+        form = Imageform()
+    image = Image.objects.all()
+    return render(request, 'myapp/home.html', {'form': form, 'images': image})
